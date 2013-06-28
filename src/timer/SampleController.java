@@ -304,11 +304,15 @@ public class SampleController implements Initializable {
     @FXML
     private void pauseButtonFired(ActionEvent event) {
         if( pauseButton.getText().equals("Pause") ) {
-            timeline.pause();
-            pauseButton.setText("Resume");
+            if(timeline != null){
+                timeline.pause();
+                pauseButton.setText("Resume");
+            }            
         } else if ( pauseButton.getText().equals("Resume") ) {
-            timeline.play();
-            pauseButton.setText("Pause");
+            if(timeline != null){
+                timeline.play();
+                pauseButton.setText("Pause");
+            }            
         }
         
     }
@@ -320,7 +324,9 @@ public class SampleController implements Initializable {
         second = 0;
         displayTime();
         
-        timeline.stop();
+        if( timeline != null){
+            timeline.stop();
+        }        
         pauseButton.setText("Pause");
     }
 
