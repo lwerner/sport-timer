@@ -1,7 +1,9 @@
 
 package timer;
 
+import java.io.File;
 import java.net.URL;
+import java.security.CodeSource;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -171,11 +173,11 @@ public class SampleController implements Initializable {
      * @param file the name of the playable file in the directory
      */
     public void playSound(String file){
-        try{
+        try{            
             Media sound = new Media(getClass().getResource(file).toString());
             play(sound);            
         } catch(Exception ex){
-            
+            ex.printStackTrace();
         }
     }
     
@@ -189,25 +191,25 @@ public class SampleController implements Initializable {
         
         if(oneSoundRB.isSelected()) {
             sounds = new String[1];
-            sounds[0] = "sound.mp3";
+            sounds[0] = "sound1.mp3";
         }
         
         if(twoSoundRB.isSelected()) {
             sounds = new String[2];
-            sounds[0] = "sound.mp3";
+            sounds[0] = "sound1.mp3";
             sounds[1] = "sound2.mp3";
         }
         
         if(threeSoundRB.isSelected()) {
             sounds = new String[3];
-            sounds[0] = "sound.mp3";
+            sounds[0] = "sound1.mp3";
             sounds[1] = "sound2.mp3";
             sounds[2] = "sound3.mp3";
         }
         
         if(fourSoundRB.isSelected()) {
             sounds = new String[4];
-            sounds[0] = "sound.mp3";
+            sounds[0] = "sound1.mp3";
             sounds[1] = "sound2.mp3";
             sounds[2] = "sound3.mp3";
             sounds[3] = "sound4.mp3";
@@ -215,7 +217,7 @@ public class SampleController implements Initializable {
         
         if(fiveSoundRB.isSelected()) {
             sounds = new String[5];
-            sounds[0] = "sound.mp3";
+            sounds[0] = "sound1.mp3";
             sounds[1] = "sound2.mp3";
             sounds[2] = "sound3.mp3";
             sounds[3] = "sound4.mp3";
