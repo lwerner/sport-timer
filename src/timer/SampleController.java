@@ -12,7 +12,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 
@@ -34,6 +39,18 @@ public class SampleController implements Initializable {
     private TextField fromField;
     @FXML
     private TextField toField;
+    @FXML
+    private RadioButton oneSoundRB;
+    @FXML
+    private ToggleGroup soundRButtons;
+    @FXML
+    private RadioButton twoSoundRB;
+    @FXML
+    private RadioButton threeSoundRB;
+    @FXML
+    private RadioButton fourSoundRB;
+    @FXML
+    private RadioButton fiveSoundRB;
     
     /********** global variables **********/
     private int hour = 0;
@@ -48,6 +65,7 @@ public class SampleController implements Initializable {
     int nextSeconds;
     int nowSeconds;
     
+    String[] soundFiles;
     /**************************************/
         
     /************ user methods *************/
@@ -136,6 +154,76 @@ public class SampleController implements Initializable {
         this.timerLabel.setText(time);
     }
     
+    /**
+     * takes the Media and creates MediaPlayer
+     * plays the Mediaplayer
+     * @param m the Media
+     */
+    public void play(Media m) {
+        if( m != null ){
+            MediaPlayer mp = new MediaPlayer(m);
+            mp.play();
+        }
+    }
+    
+    /**
+     * creates Media for the specified file and plays it
+     * @param file the name of the playable file
+     */
+    public void playSound(String file){
+        try{
+            Media sound = new Media(getClass().getResource(file).toString());
+            play(sound);
+        } catch(Exception ex){
+            
+        }
+    }
+    
+    /**
+     * writes array depending of selected count for soundfile names
+     * used later to determine the random sound that is played
+     * @return sounds[]
+     */
+    public String[] getSoundFiles() {
+        String[] sounds = null;
+        
+        if(oneSoundRB.isSelected()) {
+            sounds = new String[1];
+            sounds[0] = "sound.mp3";
+        }
+        
+        if(twoSoundRB.isSelected()) {
+            sounds = new String[2];
+            sounds[0] = "sound.mp3";
+            sounds[1] = "sound2.mp3";
+        }
+        
+        if(threeSoundRB.isSelected()) {
+            sounds = new String[3];
+            sounds[0] = "sound.mp3";
+            sounds[1] = "sound2.mp3";
+            sounds[2] = "sound3.mp3";
+        }
+        
+        if(fourSoundRB.isSelected()) {
+            sounds = new String[4];
+            sounds[0] = "sound.mp3";
+            sounds[1] = "sound2.mp3";
+            sounds[2] = "sound3.mp3";
+            sounds[3] = "sound4.mp3";
+        }
+        
+        if(fiveSoundRB.isSelected()) {
+            sounds = new String[5];
+            sounds[0] = "sound.mp3";
+            sounds[1] = "sound2.mp3";
+            sounds[2] = "sound3.mp3";
+            sounds[3] = "sound4.mp3";
+            sounds[4] = "sound5.mp3";
+        } 
+        
+        return sounds;
+    }
     
     /***************************************/
     
@@ -153,6 +241,11 @@ public class SampleController implements Initializable {
         second = 0;        
         displayTime();
         
+        // preparing the sound file array
+        // contains amount of names depending on selected radio button
+        soundFiles = getSoundFiles();         
+        
+        // total amount of seconds 
         int count = second + (60 * minute) + (3600 * hour);
         nextSeconds = count; // copy for later use
         nowSeconds = count;
@@ -164,8 +257,7 @@ public class SampleController implements Initializable {
         interval = new int[amount];
         int j = 0;
         for(int i = fromInterval; i <= toInterval; i++) {
-            interval[j] = i;
-            System.out.println(interval[j]);
+            interval[j] = i;            
             j++;
         }
                
@@ -184,10 +276,12 @@ public class SampleController implements Initializable {
                 nowSeconds = nowSeconds - 1; // nowSeconds is the actual second count left
                 
                 // if after substracting they are equal
-                // -> play a beep sound
+                // -> play a sound
                 if(nextSeconds == nowSeconds) {
-                    Beep b = Beep.getInstance();
-                    b.beep();  
+                    // select random index of soundFiles array
+                    int random = (int) (Math.random() * 10);
+                    int randomIndex = random % soundFiles.length;
+                    playSound(soundFiles[randomIndex]);
                 }                
             }
         }));

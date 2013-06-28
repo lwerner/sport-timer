@@ -5,13 +5,18 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="226.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="timer.SampleController">
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="timer.SampleController">
   <children>
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#00e0ff" height="93.0" layoutX="14.0" layoutY="36.0" stroke="BLACK" strokeType="INSIDE" width="292.0" />
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="80.0001220703125" layoutX="14.0" layoutY="136.0" opacity="0.42" stroke="BLACK" strokeType="INSIDE" width="292.0" />
+    <Rectangle fill="#00a2fd" height="93.0" layoutX="14.0" layoutY="36.0" strokeType="INSIDE" width="292.0">
+      <stroke>
+        <Color blue="0.500" green="0.500" red="0.500" fx:id="x1" />
+      </stroke>
+    </Rectangle>
+    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="149.99998474121094" layoutX="14.0" layoutY="136.0" opacity="0.42" stroke="$x1" strokeType="INSIDE" width="292.0" />
     <MenuBar prefWidth="320.0">
       <menus>
         <Menu mnemonicParsing="false" text="Datei">
@@ -26,39 +31,45 @@
         </Menu>
       </menus>
     </MenuBar>
-    <VBox id="VBox" alignment="TOP_RIGHT" fillWidth="false" layoutX="26.0" layoutY="139.0" prefWidth="134.0" spacing="5.0">
+    <Label layoutX="28.0" layoutY="146.0" text="Dauer:" />
+    <HBox id="HBox" alignment="CENTER" layoutX="28.0" layoutY="169.0" spacing="5.0">
       <children>
-        <HBox id="HBox" alignment="CENTER" spacing="5.0">
-          <children>
-            <Label text="Dauer ( min ) :" />
-            <TextField fx:id="maxTimeField" prefWidth="41.9998779296875" text="10" />
-          </children>
-        </HBox>
-        <HBox id="HBox" alignment="CENTER" spacing="5.0">
+        <TextField fx:id="maxTimeField" prefWidth="42.0" text="10" />
+        <Label text="min" />
+      </children>
+    </HBox>
+    <Label layoutX="146.0" layoutY="146.0" text="Intervall:" />
+    <VBox id="VBox" alignment="CENTER" layoutX="202.0" layoutY="143.0" spacing="5.0">
+      <children>
+        <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
           <children>
             <Label text="von:" />
-            <TextField fx:id="intervalField" prefWidth="42.0" text="4" />
+            <TextField id="intervalField" fx:id="fromField" prefWidth="42.0" text="4" />
+            <Label text="sek" />
           </children>
         </HBox>
-        <HBox id="HBox" alignment="CENTER" spacing="5.0">
+        <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
           <children>
             <Label text="bis:" />
-            <TextField fx:id="varianceField" prefWidth="41.9998779296875" text="6" />
+            <TextField id="varianceField" fx:id="toField" prefWidth="41.9998779296875" text="6" />
+            <Label text="sek" />
           </children>
         </HBox>
       </children>
     </VBox>
-    <VBox id="VBox" alignment="CENTER" layoutX="222.0" layoutY="142.0" prefWidth="69.0" spacing="5.0">
+    <HBox id="HBox" alignment="CENTER" layoutX="26.0" layoutY="259.0" prefWidth="265.0" spacing="5.0">
       <children>
         <Button fx:id="startButton" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#startButtonFired" prefWidth="69.0" text="Start" />
         <Button fx:id="pauseButton" defaultButton="true" mnemonicParsing="false" onAction="#pauseButtonFired" prefWidth="69.0" text="Pause" />
         <Button fx:id="resetButton" defaultButton="true" mnemonicParsing="false" onAction="#resetButtonFired" prefWidth="69.0" text="Reset" />
       </children>
-    </VBox>
+    </HBox>
     <Label fx:id="timerLabel" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="43.0" prefHeight="65.0" prefWidth="264.0000999999975" text="00:00:00">
       <font>
         <Font size="60.0" />
       </font>
     </Label>
+    <Label layoutX="28.0" layoutY="204.0" text="Anzahl Sounds:" />
+    <Slider fx:id="soundSlider" blockIncrement="1.0" layoutX="109.0" layoutY="204.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="1" prefWidth="182.0" showTickLabels="true" showTickMarks="true" />
   </children>
 </AnchorPane>
