@@ -1,9 +1,7 @@
 
 package timer;
 
-import java.io.File;
 import java.net.URL;
-import java.security.CodeSource;
 import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -19,7 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
 
