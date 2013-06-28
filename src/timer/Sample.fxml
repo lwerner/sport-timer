@@ -11,17 +11,13 @@
 
 <AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="timer.SampleController">
   <children>
-    <Rectangle fill="#00a2fd" height="93.0" layoutX="14.0" layoutY="36.0" strokeType="INSIDE" width="292.0">
-      <stroke>
-        <Color blue="0.500" green="0.500" red="0.500"/>
-      </stroke>
-    </Rectangle>
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="149.99998474121094" layoutX="14.0" layoutY="136.0" opacity="0.42" stroke="$x1" strokeType="INSIDE" width="292.0" />
+    <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#00a2fd" height="93.0" layoutX="14.0" layoutY="36.0" stroke="#808080" strokeType="INSIDE" width="292.0" />
+    <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="149.99998474121094" layoutX="14.0" layoutY="136.0" opacity="0.42" strokeType="INSIDE" width="292.0" />
     <MenuBar prefWidth="320.0">
       <menus>
         <Menu mnemonicParsing="false" text="Datei">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#closeButtonFired" text="Close" fx:id="closeButton" />
+            <MenuItem mnemonicParsing="false" onAction="#closeButtonFired" text="Beenden" fx:id="closeButton" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
@@ -35,7 +31,7 @@
     <HBox id="HBox" alignment="CENTER" layoutX="28.0" layoutY="169.0" spacing="5.0">
       <children>
         <TextField fx:id="maxTimeField" prefWidth="42.0" text="10" />
-        <Label text="min" />
+        <Label text="Min" />
       </children>
     </HBox>
     <Label layoutX="146.0" layoutY="146.0" text="Intervall:" />
@@ -45,14 +41,14 @@
           <children>
             <Label text="von:" />
             <TextField id="intervalField" fx:id="fromField" prefWidth="42.0" text="4" />
-            <Label text="sek" />
+            <Label text="Sek" />
           </children>
         </HBox>
         <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
           <children>
             <Label text="bis:" />
             <TextField id="varianceField" fx:id="toField" prefWidth="41.9998779296875" text="6" />
-            <Label text="sek" />
+            <Label text="Sek" />
           </children>
         </HBox>
       </children>

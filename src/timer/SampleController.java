@@ -281,13 +281,19 @@ public class SampleController implements Initializable {
                     int random = (int) (Math.random() * 10);
                     int randomIndex = random % soundFiles.length;
                     playSound(soundFiles[randomIndex]);
-                }                
+                }
+                
+                if(nowSeconds == 0) {
+                    playSound("endSound.mp3");
+                }
             }
         }));
         
         // starting the timeline        
         timeline.setCycleCount(count);
-        timeline.play();        
+        timeline.play();    
+        
+        
     }
 
     /**

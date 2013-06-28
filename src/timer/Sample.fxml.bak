@@ -11,12 +11,8 @@
 
 <AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="timer.SampleController">
   <children>
-    <Rectangle fill="#00a2fd" height="93.0" layoutX="14.0" layoutY="36.0" strokeType="INSIDE" width="292.0">
-      <stroke>
-        <Color blue="0.500" green="0.500" red="0.500" fx:id="x1" />
-      </stroke>
-    </Rectangle>
-    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="149.99998474121094" layoutX="14.0" layoutY="136.0" opacity="0.42" stroke="$x1" strokeType="INSIDE" width="292.0" />
+    <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#00a2fd" height="93.0" layoutX="14.0" layoutY="36.0" stroke="#808080" strokeType="INSIDE" width="292.0" />
+    <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="149.99998474121094" layoutX="14.0" layoutY="136.0" opacity="0.42" strokeType="INSIDE" width="292.0" />
     <MenuBar prefWidth="320.0">
       <menus>
         <Menu mnemonicParsing="false" text="Datei">
@@ -35,7 +31,7 @@
     <HBox id="HBox" alignment="CENTER" layoutX="28.0" layoutY="169.0" spacing="5.0">
       <children>
         <TextField fx:id="maxTimeField" prefWidth="42.0" text="10" />
-        <Label text="min" />
+        <Label text="Min" />
       </children>
     </HBox>
     <Label layoutX="146.0" layoutY="146.0" text="Intervall:" />
@@ -45,14 +41,14 @@
           <children>
             <Label text="von:" />
             <TextField id="intervalField" fx:id="fromField" prefWidth="42.0" text="4" />
-            <Label text="sek" />
+            <Label text="Sek" />
           </children>
         </HBox>
         <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
           <children>
             <Label text="bis:" />
             <TextField id="varianceField" fx:id="toField" prefWidth="41.9998779296875" text="6" />
-            <Label text="sek" />
+            <Label text="Sek" />
           </children>
         </HBox>
       </children>
@@ -70,6 +66,18 @@
       </font>
     </Label>
     <Label layoutX="28.0" layoutY="204.0" text="Anzahl Sounds:" />
-    <Slider fx:id="soundSlider" blockIncrement="1.0" layoutX="109.0" layoutY="204.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="1" prefWidth="182.0" showTickLabels="true" showTickMarks="true" />
+    <HBox id="HBox" alignment="CENTER" layoutX="40.0" layoutY="228.0" spacing="30.0">
+      <children>
+        <RadioButton fx:id="oneSoundRB" mnemonicParsing="false" selected="true" text="1">
+          <toggleGroup>
+            <ToggleGroup fx:id="soundRButtons" />
+          </toggleGroup>
+        </RadioButton>
+        <RadioButton id="twoSOundRB" fx:id="twoSoundRB" mnemonicParsing="false" text="2" toggleGroup="$soundRButtons" />
+        <RadioButton fx:id="threeSoundRB" mnemonicParsing="false" text="3" toggleGroup="$soundRButtons" />
+        <RadioButton fx:id="fourSoundRB" mnemonicParsing="false" text="4" toggleGroup="$soundRButtons" />
+        <RadioButton fx:id="fiveSoundRB" mnemonicParsing="false" text="5" toggleGroup="$soundRButtons" />
+      </children>
+    </HBox>
   </children>
 </AnchorPane>
