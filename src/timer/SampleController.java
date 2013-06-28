@@ -168,12 +168,12 @@ public class SampleController implements Initializable {
     
     /**
      * creates Media for the specified file and plays it
-     * @param file the name of the playable file
+     * @param file the name of the playable file in the directory
      */
     public void playSound(String file){
         try{
             Media sound = new Media(getClass().getResource(file).toString());
-            play(sound);
+            play(sound);            
         } catch(Exception ex){
             
         }
