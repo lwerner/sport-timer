@@ -374,7 +374,7 @@ public class SampleController implements Initializable {
         final int onTime = Integer.parseInt(this.onIntervalField.getText());
         final int offTime = Integer.parseInt(this.offIntervalField.getText());        
         
-        int maxTime = iterations * (onTime + offTime);
+        final int maxTime = iterations * (onTime + offTime);
         hour = maxTime / 3600;
         minute = maxTime / 60;
         second = maxTime % 60;
@@ -386,7 +386,9 @@ public class SampleController implements Initializable {
         itimeline = new Timeline( new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
-                                
+                if(inowSeconds == maxTime){
+                    playSound("onSound.mp3");
+                }
                 // if equal --> get next random number and substract it
                 if(inextSeconds == inowSeconds) {
                     int next = 0;
