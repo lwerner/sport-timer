@@ -213,7 +213,7 @@ public class SampleController implements Initializable {
         
         if(oneSoundRB.isSelected()) {
             sounds = new String[1];
-            sounds[0] = "sound1.mp3";
+            sounds[0] = "click.mp3";
         }
         
         if(twoSoundRB.isSelected()) {
@@ -383,12 +383,12 @@ public class SampleController implements Initializable {
         inowSeconds = maxTime;
         inextSeconds = maxTime;
         
+        playSound("onSound.mp3");
+        
         itimeline = new Timeline( new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent t) {
-                if(inowSeconds == maxTime){
-                    playSound("onSound.mp3");
-                }
+                
                 // if equal --> get next random number and substract it
                 if(inextSeconds == inowSeconds) {
                     int next = 0;
@@ -410,7 +410,7 @@ public class SampleController implements Initializable {
                 // -> play a sound
                 if(inextSeconds == inowSeconds && inowSeconds != 0) {
                     // select random index of soundFiles array
-                    if(!on){ // means on was triggered
+                    if(on){ // means on was triggered
                         playSound("onSound.mp3");
                     } else {
                         playSound("offSound.mp3");
