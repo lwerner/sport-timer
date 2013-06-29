@@ -9,15 +9,134 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="timer.SampleController">
+<AnchorPane id="AnchorPane" prefHeight="322.0" prefWidth="320.0" xmlns:fx="http://javafx.com/fxml" fx:controller="timer.SampleController">
   <children>
-    <Rectangle arcHeight="10.0" arcWidth="10.0" fill="#00a2fd" height="93.0" layoutX="14.0" layoutY="36.0" stroke="#808080" strokeType="INSIDE" width="292.0" />
-    <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="149.99998474121094" layoutX="14.0" layoutY="136.0" opacity="0.42" strokeType="INSIDE" width="292.0" />
+    <TabPane layoutY="23.0" prefHeight="299.0" prefWidth="320.0" tabClosingPolicy="UNAVAILABLE">
+      <tabs>
+        <Tab text="RandomTimer">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="248.0" prefWidth="320.0">
+              <children>
+                <Group id="Group" layoutY="-22.0">
+                  <children>
+                    <Rectangle arcHeight="10.0" arcWidth="10.0" height="93.0" layoutX="14.0" layoutY="36.0" stroke="GREY" strokeType="INSIDE" width="292.0">
+                      <fill>
+                        <Color blue="0.992" green="0.635" red="0.000" fx:id="x1" />
+                      </fill>
+                    </Rectangle>
+                    <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="149.99998474121094" layoutX="14.0" layoutY="136.0" opacity="0.42" strokeType="INSIDE" width="292.0" />
+                    <Label layoutX="28.0" layoutY="146.0" text="Dauer:" />
+                    <HBox id="HBox" alignment="CENTER" layoutX="28.0" layoutY="169.0" spacing="5.0">
+                      <children>
+                        <TextField fx:id="maxTimeField" prefWidth="42.0" text="10" />
+                        <Label text="Min" />
+                      </children>
+                    </HBox>
+                    <Label layoutX="146.0" layoutY="146.0" text="Intervall:" />
+                    <VBox id="VBox" alignment="CENTER" layoutX="202.0" layoutY="143.0" spacing="5.0">
+                      <children>
+                        <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
+                          <children>
+                            <Label text="von:" />
+                            <TextField id="intervalField" fx:id="fromField" prefWidth="42.0" text="4" />
+                            <Label text="Sek" />
+                          </children>
+                        </HBox>
+                        <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
+                          <children>
+                            <Label text="bis:" />
+                            <TextField id="varianceField" fx:id="toField" prefWidth="41.9998779296875" text="6" />
+                            <Label text="Sek" />
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                    <HBox id="HBox" alignment="CENTER" layoutX="26.0" layoutY="259.0" prefWidth="265.0" spacing="5.0">
+                      <children>
+                        <Button fx:id="startButton" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#startButtonFired" prefWidth="69.0" text="Start" />
+                        <Button fx:id="pauseButton" defaultButton="true" mnemonicParsing="false" onAction="#pauseButtonFired" prefWidth="69.0" text="Pause" />
+                        <Button fx:id="resetButton" defaultButton="true" mnemonicParsing="false" onAction="#resetButtonFired" prefWidth="69.0" text="Reset" />
+                      </children>
+                    </HBox>
+                    <Label fx:id="timerLabel" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="43.0" prefHeight="65.0" prefWidth="264.0000999999975" text="00:00:00">
+                      <font>
+                        <Font size="60.0" fx:id="x2" />
+                      </font>
+                    </Label>
+                    <Label layoutX="28.0" layoutY="204.0" text="Anzahl Sounds:" />
+                    <HBox id="HBox" alignment="CENTER" layoutX="40.0" layoutY="228.0" spacing="30.0">
+                      <children>
+                        <RadioButton fx:id="oneSoundRB" mnemonicParsing="false" selected="true" text="1">
+                          <toggleGroup>
+                            <ToggleGroup fx:id="soundRButtons" />
+                          </toggleGroup>
+                        </RadioButton>
+                        <RadioButton id="twoSOundRB" fx:id="twoSoundRB" mnemonicParsing="false" text="2" toggleGroup="$soundRButtons" />
+                        <RadioButton fx:id="threeSoundRB" mnemonicParsing="false" text="3" toggleGroup="$soundRButtons" />
+                        <RadioButton fx:id="fourSoundRB" mnemonicParsing="false" text="4" toggleGroup="$soundRButtons" />
+                        <RadioButton fx:id="fiveSoundRB" mnemonicParsing="false" text="5" toggleGroup="$soundRButtons" />
+                      </children>
+                    </HBox>
+                  </children>
+                </Group>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+        <Tab text="IntervalTimer">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <children>
+                <Group id="Group" layoutY="-22.0">
+                  <children>
+                    <Rectangle arcHeight="10.0" arcWidth="10.0" fill="$x1" height="93.0" layoutX="14.0" layoutY="36.0" stroke="GREY" strokeType="INSIDE" width="292.0" />
+                    <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="149.99998474121094" layoutX="14.0" layoutY="136.0" opacity="0.42" strokeType="INSIDE" width="292.0" />
+                    <Label layoutX="28.0" layoutY="146.0" text="Iterationen:" />
+                    <HBox id="HBox" alignment="CENTER" layoutX="28.0" layoutY="169.0" spacing="5.0">
+                      <children>
+                        <TextField id="maxTimeField" fx:id="iterationField" prefWidth="42.0" text="10" />
+                      </children>
+                    </HBox>
+                    <Label layoutX="146.0" layoutY="146.0" text="Intervall:" />
+                    <VBox id="VBox" alignment="CENTER" layoutX="202.0" layoutY="143.0" spacing="5.0">
+                      <children>
+                        <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
+                          <children>
+                            <Label text="on:" />
+                            <TextField id="intervalField" fx:id="onIntervalField" prefWidth="42.0" text="50" />
+                            <Label text="Sek" />
+                          </children>
+                        </HBox>
+                        <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
+                          <children>
+                            <Label text="off:" />
+                            <TextField id="varianceField" fx:id="offIntervalField" prefWidth="41.9998779296875" text="10" />
+                            <Label text="Sek" />
+                          </children>
+                        </HBox>
+                      </children>
+                    </VBox>
+                    <HBox id="HBox" alignment="CENTER" layoutX="26.0" layoutY="259.0" prefWidth="265.0" spacing="5.0">
+                      <children>
+                        <Button id="startButton" fx:id="iStartButton" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#iStartButtonFired" prefWidth="69.0" text="Start" />
+                        <Button id="pauseButton" fx:id="iPauseButton" defaultButton="true" mnemonicParsing="false" onAction="#iPauseButtonFired" prefWidth="69.0" text="Pause" />
+                        <Button id="resetButton" fx:id="iResetButton" defaultButton="true" mnemonicParsing="false" onAction="#iResetButtonFired" prefWidth="69.0" text="Reset" />
+                      </children>
+                    </HBox>
+                    <Label id="timerLabel" fx:id="iTimeLabel" alignment="CENTER_RIGHT" font="$x2" layoutX="26.0" layoutY="43.0" prefHeight="65.0" prefWidth="264.0000999999975" text="00:00:00" />
+                  </children>
+                </Group>
+              </children>
+            </AnchorPane>
+          </content>
+        </Tab>
+      </tabs>
+    </TabPane>
     <MenuBar prefWidth="320.0">
       <menus>
         <Menu mnemonicParsing="false" text="Datei">
           <items>
-            <MenuItem mnemonicParsing="false" onAction="#closeButtonFired" text="Close" fx:id="closeButton" />
+            <MenuItem mnemonicParsing="false" onAction="#closeButtonFired" text="Beenden" fx:id="closeButton" />
           </items>
         </Menu>
         <Menu mnemonicParsing="false" text="Help">
@@ -27,57 +146,5 @@
         </Menu>
       </menus>
     </MenuBar>
-    <Label layoutX="28.0" layoutY="146.0" text="Dauer:" />
-    <HBox id="HBox" alignment="CENTER" layoutX="28.0" layoutY="169.0" spacing="5.0">
-      <children>
-        <TextField fx:id="maxTimeField" prefWidth="42.0" text="10" />
-        <Label text="Min" />
-      </children>
-    </HBox>
-    <Label layoutX="146.0" layoutY="146.0" text="Intervall:" />
-    <VBox id="VBox" alignment="CENTER" layoutX="202.0" layoutY="143.0" spacing="5.0">
-      <children>
-        <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
-          <children>
-            <Label text="von:" />
-            <TextField id="intervalField" fx:id="fromField" prefWidth="42.0" text="4" />
-            <Label text="Sek" />
-          </children>
-        </HBox>
-        <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
-          <children>
-            <Label text="bis:" />
-            <TextField id="varianceField" fx:id="toField" prefWidth="41.9998779296875" text="6" />
-            <Label text="Sek" />
-          </children>
-        </HBox>
-      </children>
-    </VBox>
-    <HBox id="HBox" alignment="CENTER" layoutX="26.0" layoutY="259.0" prefWidth="265.0" spacing="5.0">
-      <children>
-        <Button fx:id="startButton" contentDisplay="CENTER" defaultButton="true" mnemonicParsing="false" onAction="#startButtonFired" prefWidth="69.0" text="Start" />
-        <Button fx:id="pauseButton" defaultButton="true" mnemonicParsing="false" onAction="#pauseButtonFired" prefWidth="69.0" text="Pause" />
-        <Button fx:id="resetButton" defaultButton="true" mnemonicParsing="false" onAction="#resetButtonFired" prefWidth="69.0" text="Reset" />
-      </children>
-    </HBox>
-    <Label fx:id="timerLabel" alignment="CENTER_RIGHT" layoutX="26.0" layoutY="43.0" prefHeight="65.0" prefWidth="264.0000999999975" text="00:00:00">
-      <font>
-        <Font size="60.0" />
-      </font>
-    </Label>
-    <Label layoutX="28.0" layoutY="204.0" text="Anzahl Sounds:" />
-    <HBox id="HBox" alignment="CENTER" layoutX="40.0" layoutY="228.0" spacing="30.0">
-      <children>
-        <RadioButton fx:id="oneSoundRB" mnemonicParsing="false" selected="true" text="1">
-          <toggleGroup>
-            <ToggleGroup fx:id="soundRButtons" />
-          </toggleGroup>
-        </RadioButton>
-        <RadioButton id="twoSOundRB" fx:id="twoSoundRB" mnemonicParsing="false" text="2" toggleGroup="$soundRButtons" />
-        <RadioButton fx:id="threeSoundRB" mnemonicParsing="false" text="3" toggleGroup="$soundRButtons" />
-        <RadioButton fx:id="fourSoundRB" mnemonicParsing="false" text="4" toggleGroup="$soundRButtons" />
-        <RadioButton fx:id="fiveSoundRB" mnemonicParsing="false" text="5" toggleGroup="$soundRButtons" />
-      </children>
-    </HBox>
   </children>
 </AnchorPane>

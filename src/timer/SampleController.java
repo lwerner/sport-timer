@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.media.Media;
@@ -49,7 +50,25 @@ public class SampleController implements Initializable {
     @FXML
     private RadioButton fourSoundRB;
     @FXML
-    private RadioButton fiveSoundRB;
+    private RadioButton fiveSoundRB;    
+    @FXML
+    private TextField iterationField;
+    @FXML
+    private TextField onIntervalField;
+    @FXML
+    private TextField offIntervalField;
+    @FXML
+    private Button iStartButton;
+    @FXML
+    private Button iPauseButton;
+    @FXML
+    private Button iResetButton;
+    @FXML
+    private Label iTimeLabel;
+    @FXML
+    private Tab timerTab;
+    @FXML
+    private Tab iTimerTab;
     
     /********** global variables **********/
     private int hour = 0;
@@ -58,13 +77,19 @@ public class SampleController implements Initializable {
     
     private boolean keep_going = true;   
     Timeline timeline;
+    Timeline itimeline;
     private int fromInterval;
     private int toInterval;
     private int[] interval;
     int nextSeconds;
+    int inextSeconds;
     int nowSeconds;
+    int inowSeconds;
     
     String[] soundFiles;
+    boolean on = true;
+    
+   
     /**************************************/
         
     /************ user methods *************/
@@ -103,7 +128,7 @@ public class SampleController implements Initializable {
     /**
      * reduces global second count by one
      */
-    public boolean reduceSecond(){
+    public boolean reduceSecond(Label label){
         if(hour == 0 & minute == 0 & second == 0){
             keep_going = false;
             return false;
@@ -115,7 +140,7 @@ public class SampleController implements Initializable {
         } else {
             second = second - 1;            
         }    
-        displayTime();
+        displayTime(label);
         return true;
     }
     
@@ -125,7 +150,7 @@ public class SampleController implements Initializable {
      * @param minutes
      * @param seconds 
      */
-    public void displayTime(){
+    public void displayTime(Label label){
         String h;
         String m;
         String s;
@@ -150,7 +175,7 @@ public class SampleController implements Initializable {
         
         String time = h + ":" + m + ":" + s;
         
-        this.timerLabel.setText(time);
+        label.setText(time);
     }
     
     /**
@@ -228,7 +253,7 @@ public class SampleController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        displayTime();        
+        displayTime(this.timerLabel);        
     }    
 
     @FXML
@@ -238,7 +263,7 @@ public class SampleController implements Initializable {
         hour = Integer.parseInt(this.maxTimeField.getText()) / 60;
         minute = Integer.parseInt(this.maxTimeField.getText()) % 60;
         second = 0;        
-        displayTime();
+        displayTime(this.timerLabel);
         
         // preparing the sound file array
         // contains amount of names depending on selected radio button
@@ -271,7 +296,7 @@ public class SampleController implements Initializable {
                 }  
                 
                 // reduce one second
-                reduceSecond();                 
+                reduceSecond(timerLabel);                 
                 nowSeconds = nowSeconds - 1; // nowSeconds is the actual second count left
                 
                 // if after substracting they are equal
@@ -328,7 +353,7 @@ public class SampleController implements Initializable {
         hour = 0;
         minute = 0;
         second = 0;
-        displayTime();
+        displayTime(this.timerLabel);
         
         if( timeline != null){
             timeline.stop();
@@ -339,6 +364,94 @@ public class SampleController implements Initializable {
     @FXML
     private void closeButtonFired(ActionEvent event) {
         System.exit(0);
+    }
+
+    @FXML
+    private void iStartButtonFired(ActionEvent event) {
+        
+        // display iteration * ( on + off )
+        int iterations = Integer.parseInt(this.iterationField.getText());
+        final int onTime = Integer.parseInt(this.onIntervalField.getText());
+        final int offTime = Integer.parseInt(this.offIntervalField.getText());        
+        
+        int maxTime = iterations * (onTime + offTime);
+        hour = maxTime / 3600;
+        minute = maxTime / 60;
+        second = maxTime % 60;
+        displayTime(this.iTimeLabel);
+        
+        inowSeconds = maxTime;
+        inextSeconds = maxTime;
+        
+        itimeline = new Timeline( new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent t) {
+                                
+                // if equal --> get next random number and substract it
+                if(inextSeconds == inowSeconds) {
+                    int next = 0;
+                    if(on){
+                        next = onTime;
+                        on = false;
+                    } else {
+                        next = offTime;
+                        on = true;
+                    }
+                    inextSeconds = inextSeconds - next; 
+                }  
+                
+                // reduce one second
+                reduceSecond(iTimeLabel);                 
+                inowSeconds = inowSeconds - 1; // nowSeconds is the actual second count left
+                
+                // if after substracting they are equal
+                // -> play a sound
+                if(inextSeconds == inowSeconds && inowSeconds != 0) {
+                    // select random index of soundFiles array
+                    if(!on){ // means on was triggered
+                        playSound("onSound.mp3");
+                    } else {
+                        playSound("offSound.mp3");
+                    }                    
+                }
+                
+                if(inowSeconds == 0) {
+                    playSound("endSound.mp3");
+                }
+            }
+        }));
+        
+        // starting the timeline        
+        itimeline.setCycleCount(maxTime);
+        itimeline.play();    
+    }
+
+    @FXML
+    private void iPauseButtonFired(ActionEvent event) {
+        if( iPauseButton.getText().equals("Pause") ) {
+            if(itimeline != null){
+                itimeline.pause();
+                iPauseButton.setText("Resume");
+            }            
+        } else if ( iPauseButton.getText().equals("Resume") ) {
+            if(itimeline != null){
+                itimeline.play();
+                iPauseButton.setText("Pause");
+            }            
+        }
+    }
+
+    @FXML
+    private void iResetButtonFired(ActionEvent event) {
+        hour = 0;
+        minute = 0;
+        second = 0;
+        displayTime(this.iTimeLabel);
+        
+        if( itimeline != null){
+            itimeline.stop();
+        }        
+        iPauseButton.setText("Pause");
     }
     
     
