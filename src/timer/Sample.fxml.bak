@@ -13,7 +13,7 @@
   <children>
     <TabPane layoutY="23.0" prefHeight="299.0" prefWidth="320.0" tabClosingPolicy="UNAVAILABLE">
       <tabs>
-        <Tab text="RandomTimer">
+        <Tab fx:id="timerTab" text="RandomTimer">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="248.0" prefWidth="320.0">
               <children>
@@ -83,7 +83,7 @@
             </AnchorPane>
           </content>
         </Tab>
-        <Tab text="IntervalTimer">
+        <Tab fx:id="iTimerTab" text="IntervalTimer">
           <content>
             <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
               <children>

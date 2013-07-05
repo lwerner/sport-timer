@@ -316,6 +316,7 @@ public class SampleController implements Initializable {
         
         // starting the timeline        
         timeline.setCycleCount(count);
+        this.startButton.setDisable(true);
         timeline.play();    
         
         
@@ -359,6 +360,7 @@ public class SampleController implements Initializable {
             timeline.stop();
         }        
         pauseButton.setText("Pause");
+        this.startButton.setDisable(false);
     }
 
     @FXML
@@ -383,7 +385,7 @@ public class SampleController implements Initializable {
         inowSeconds = maxTime;
         inextSeconds = maxTime;
         
-        playSound("onSound.mp3");
+        playSound("offSound.mp3");
         
         itimeline = new Timeline( new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
             @Override
@@ -393,10 +395,10 @@ public class SampleController implements Initializable {
                 if(inextSeconds == inowSeconds) {
                     int next = 0;
                     if(on){
-                        next = onTime;
+                        next = offTime;
                         on = false;
                     } else {
-                        next = offTime;
+                        next = onTime;
                         on = true;
                     }
                     inextSeconds = inextSeconds - next; 
@@ -411,9 +413,9 @@ public class SampleController implements Initializable {
                 if(inextSeconds == inowSeconds && inowSeconds != 0) {
                     // select random index of soundFiles array
                     if(on){ // means on was triggered
-                        playSound("onSound.mp3");
-                    } else {
                         playSound("offSound.mp3");
+                    } else {
+                        playSound("onSound.mp3");
                     }                    
                 }
                 
@@ -425,6 +427,7 @@ public class SampleController implements Initializable {
         
         // starting the timeline        
         itimeline.setCycleCount(maxTime);
+        this.iStartButton.setDisable(true);
         itimeline.play();    
     }
 
@@ -454,6 +457,7 @@ public class SampleController implements Initializable {
             itimeline.stop();
         }        
         iPauseButton.setText("Pause");
+        this.iStartButton.setDisable(false);
     }
     
     

@@ -91,7 +91,7 @@
                   <children>
                     <Rectangle arcHeight="10.0" arcWidth="10.0" fill="$x1" height="93.0" layoutX="14.0" layoutY="36.0" stroke="GREY" strokeType="INSIDE" width="292.0" />
                     <Rectangle arcHeight="10.0" arcWidth="10.0" fill="DODGERBLUE" height="149.99998474121094" layoutX="14.0" layoutY="136.0" opacity="0.42" strokeType="INSIDE" width="292.0" />
-                    <Label layoutX="28.0" layoutY="146.0" text="Iterationen:" />
+                    <Label layoutX="28.0" layoutY="146.0" text="Runden:" />
                     <HBox id="HBox" alignment="CENTER" layoutX="28.0" layoutY="169.0" spacing="5.0">
                       <children>
                         <TextField id="maxTimeField" fx:id="iterationField" prefWidth="42.0" text="10" />
@@ -102,15 +102,15 @@
                       <children>
                         <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
                           <children>
-                            <Label text="on:" />
-                            <TextField id="intervalField" fx:id="onIntervalField" prefWidth="42.0" text="50" />
+                            <Label text="off:" />
+                            <TextField id="varianceField" fx:id="offIntervalField" prefWidth="41.9998779296875" text="10" />
                             <Label text="Sek" />
                           </children>
                         </HBox>
                         <HBox id="HBox" alignment="CENTER_RIGHT" spacing="5.0">
                           <children>
-                            <Label text="off:" />
-                            <TextField id="varianceField" fx:id="offIntervalField" prefWidth="41.9998779296875" text="10" />
+                            <Label text="on:" />
+                            <TextField id="intervalField" fx:id="onIntervalField" prefWidth="42.0" text="50" />
                             <Label text="Sek" />
                           </children>
                         </HBox>
